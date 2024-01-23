@@ -1,6 +1,19 @@
-# Desafio agurmentos posicionais e nomeados
-def gerar_objeto_personalizado(cor, *, altura, formato):
-    print (f'{cor}, {altura}, {formato}')
+# Desafio decorators
+from datetime import datetime
 
-gerar_objeto_personalizado('Preto', altura=1.5, formato='triangular')
 
+def verificar_horario(funcao):
+    def visualizacao():
+        now = datetime.now()
+        print(datetime.now())
+        funcao()
+        print(datetime.now())
+    return visualizacao
+
+
+def mensagem():
+    print('Desafio encerrado!')
+
+
+resultado = verificar_horario(mensagem)
+resultado()
