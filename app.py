@@ -1,19 +1,37 @@
-# Desafio decorators
-from datetime import datetime
+from turtle import Turtle
+t = Turtle()
+t.speed(1)
 
+def obter_distancia():
+    resposta = int(input('Quantos pixels devemos movimentar para frente? \n '))
+    return resposta
 
-def verificar_horario(funcao):
-    def visualizacao():
-        now = datetime.now()
-        print(datetime.now())
-        funcao()
-        print(datetime.now())
-    return visualizacao
+def rotacionar_turtle(turtle):
+    movimentar_para_lado = input(
+        'Rotacionar para d: direita, e: para esquerda e n:  não rotacionar: \n ')
+    if movimentar_para_lado == 'd':
+         rotacionar_dreita(turtle)
+    elif movimentar_para_lado == 'e':
+         rotacionar_esquerda(turtle)     
+    
+def rotacionar_dreita(turtle):
+    angulo = int(input('Quanto para direita devemos rotacionar? \n '))
+    t.right(angulo) 
 
+def rotacionar_esquerda(turtle):
+    angulo = int(input('Quanto para esquerda devemos rotacionar? \n '))  
+    t.left(angulo)       
 
-def mensagem():
-    print('Desafio encerrado!')
-
-
-resultado = verificar_horario(mensagem)
-resultado()
+while True:
+    direcao = input('Para qual direção devemos ir? "f: frente" e "t: trás" \n ')
+    if direcao == 'f':
+        distancia = obter_distancia()
+        rotacionar_turtle(t) 
+        t.forward(distancia)    
+    if direcao == 't':
+        distancia = obter_distancia()
+        rotacionar_turtle(t)
+        t.backward(distancia)
+    resposta = input('Continuar andando? \n ')
+    if resposta not in ('sim', 's'):
+        break
