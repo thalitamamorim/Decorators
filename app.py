@@ -23,15 +23,26 @@ def rotacionar_esquerda(turtle):
     t.left(angulo)       
 
 while True:
-    direcao = input('Para qual direção devemos ir? "f: frente" e "t: trás" \n ')
-    if direcao == 'f':
-        distancia = obter_distancia()
-        rotacionar_turtle(t) 
-        t.forward(distancia)    
-    if direcao == 't':
-        distancia = obter_distancia()
-        rotacionar_turtle(t)
-        t.backward(distancia)
-    resposta = input('Continuar andando? \n ')
-    if resposta not in ('sim', 's'):
+    if len(pedido) < max_ingredientes:
+        print(f"Você ainda pode pedir {max_ingredientes-len(pedido)}.")
+        print(f"Digite o número da próxima opção desejada ou 's' para sair e finalizar seu pedido.")
+
+        contador_opcao = 0
+        for ingrediente in ingredientes:
+            print (f"{contador_opcao+1} - {ingrediente}")
+            contador_opcao = contador_opcao + 1
+
+        opcao = input("Qual opção deseja? ")
+        if opcao == "s":
+            print ("Segue o seu pedido: ")
+            for ingrediente in pedido:
+                print(ingrediente)
+            break
+        else:
+            pedido.append(ingredientes.pop(int(opcao)-1))
+
+    else:
+        print ("Segue o seu pedido: ")
+        for ingrediente in pedido:
+            print(ingrediente)
         break
